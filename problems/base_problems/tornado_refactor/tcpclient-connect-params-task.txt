@@ -1,0 +1,1 @@
+Can you wrap up the parameters for TCPClient.connect() into a separate dataclass named TCPClientConfig in a new file tornado/tcpclientconfig.py and import and pass that for all the calls throughout the repo?

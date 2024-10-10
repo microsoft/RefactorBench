@@ -1,0 +1,1 @@
+Modify the log parameter in get_encoding_from_headers and adjust defaults accordingly across files.

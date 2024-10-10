@@ -1,0 +1,1 @@
+split parse_apps_and_model_labels into a function that returns apps and a function that returns models 

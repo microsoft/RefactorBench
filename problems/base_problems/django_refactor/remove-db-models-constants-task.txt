@@ -1,0 +1,1 @@
+remove all the content in django/db/models/constants and put it in base and update the repo accordingly

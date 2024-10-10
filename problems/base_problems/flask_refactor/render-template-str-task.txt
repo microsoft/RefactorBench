@@ -1,0 +1,1 @@
+Rename render_template_string to render_template_str and update the flask usage to also user render_template_str.

@@ -1,0 +1,1 @@
+Move _path_from_module in apps/config.py to a new utils file called apps_utils.py

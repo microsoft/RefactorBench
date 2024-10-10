@@ -1,0 +1,1 @@
+Combine _unpickle_task and _unpickle_task_v2 and put the _unpickle_task_v2 implementation in _unpickle_task. Update the tests to remove all references to the versons, but have the same core tests.

@@ -1,0 +1,1 @@
+Rename a file and update references in the repository.

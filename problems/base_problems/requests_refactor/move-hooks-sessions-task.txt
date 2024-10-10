@@ -1,0 +1,1 @@
+Remove the hooks.py file and put all that content in sessions.py and update throughout the repo accordingly

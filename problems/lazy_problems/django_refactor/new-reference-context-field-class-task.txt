@@ -1,0 +1,1 @@
+Introduce a ReferenceContext class for parameters in field_references and utilize it accordingly.

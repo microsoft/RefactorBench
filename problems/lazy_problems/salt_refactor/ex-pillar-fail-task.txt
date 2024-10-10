@@ -1,0 +1,1 @@
+Rename constant and update its references.

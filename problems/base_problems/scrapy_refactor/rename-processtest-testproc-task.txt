@@ -1,0 +1,1 @@
+Rename the ProcessTest class in scrapy/utils/testproc.py to testproc as that is what the file is named itself. Update all references in the repo accordingly.

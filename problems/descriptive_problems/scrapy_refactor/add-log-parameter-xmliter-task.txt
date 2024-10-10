@@ -1,0 +1,1 @@
+Enhance the xmliter function in the file named 'iterators.py' located in the 'scrapy/utils' directory by adding a new boolean parameter named 'log'. Set the default value of this parameter to 'true'. In the file named 'test_utils_iterators.py', located in the 'tests' directory, ensure that all calls to the xmliter function explicitly set this new parameter to 'false'.

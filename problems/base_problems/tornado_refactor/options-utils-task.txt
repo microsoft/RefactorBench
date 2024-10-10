@@ -1,0 +1,1 @@
+Move all the stray functions in `tornado/options.py` and move them into a newly created `global_options.py`. Update all the imports in the repository accordingly.

@@ -1,0 +1,1 @@
+Rename the main function but retain the package initialization name.

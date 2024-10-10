@@ -1,0 +1,1 @@
+Add a log parameter to the select proxy function and adjust its usage across the repository.

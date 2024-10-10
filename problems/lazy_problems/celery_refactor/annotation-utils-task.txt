@@ -1,0 +1,1 @@
+Move `resolve_all` from `annotations` to `annotations_utils.py` and handle necessary imports.

@@ -1,0 +1,1 @@
+Refactor the `enable_pretty_logging()` function from `tornado/log.py` as a method for the class `tornado.option.OptionParser`.

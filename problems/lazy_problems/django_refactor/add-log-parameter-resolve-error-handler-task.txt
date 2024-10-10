@@ -1,0 +1,1 @@
+Update resolve_error_handler to include an optional logging feature, defaulting to off.

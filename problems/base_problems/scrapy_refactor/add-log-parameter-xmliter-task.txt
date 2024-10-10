@@ -1,0 +1,1 @@
+Add a log boolean parameter to the xmliter function in scrapy/utils/iterators.py and make the base case true. For all testing calls make log=False but otherwise leave it as true.

@@ -1,0 +1,1 @@
+Add a log parameter to get_group_vars and keep the base case as true and update the rest of the repository calls to have log=False.

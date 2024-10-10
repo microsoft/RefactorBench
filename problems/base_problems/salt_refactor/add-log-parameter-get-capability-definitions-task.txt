@@ -1,0 +1,1 @@
+Add a log boolean parameter in get_capability_definitions with the base log=False and make the log=True in all cases except testing files.

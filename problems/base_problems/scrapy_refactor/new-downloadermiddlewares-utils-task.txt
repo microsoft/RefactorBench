@@ -1,0 +1,1 @@
+Create a new utils file called downloadermiddlewares.py and move the functions outside the class in stats.py in downloadermiddlewares to it and import them correctly.

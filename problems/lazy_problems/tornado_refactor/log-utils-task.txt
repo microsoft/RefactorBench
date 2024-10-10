@@ -1,0 +1,1 @@
+Relocate logging-related functions to a new module.

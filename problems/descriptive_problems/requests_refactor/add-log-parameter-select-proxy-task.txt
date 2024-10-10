@@ -1,0 +1,1 @@
+Please modify the 'select_proxy' function in the file 'requests/utils.py' to include an additional parameter named 'log' with a default value of False. Then, update all instances where the 'select_proxy' function is called in the file 'requests/adapters.py' to explicitly set the 'log' parameter to True.

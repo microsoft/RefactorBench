@@ -1,0 +1,1 @@
+Rename EX_NOPERM into EX_PERM_DENIED and update the usage within the codebase.

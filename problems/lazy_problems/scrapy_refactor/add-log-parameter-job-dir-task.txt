@@ -1,0 +1,1 @@
+Incorporate a boolean log parameter into job_dir and adjust all relevant references.

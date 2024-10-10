@@ -1,0 +1,1 @@
+Move the outside functions, not the classes, from debughelpers to helpers and update the repository imports accordingly

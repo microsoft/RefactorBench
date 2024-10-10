@@ -1,0 +1,1 @@
+add a new PathTraversal exception that extends the suspicious operation exception and replaces some of the SuspiciousFileOperation calls. Update the repository accordingly

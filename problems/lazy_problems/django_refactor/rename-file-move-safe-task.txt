@@ -1,0 +1,1 @@
+Rename the file_move_safe function to safe_file_move and adjust documentation references accordingly.

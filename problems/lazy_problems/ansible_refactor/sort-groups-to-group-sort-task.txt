@@ -1,0 +1,1 @@
+Rename and update references of 'sort_groups' to 'group_sort' in the code.

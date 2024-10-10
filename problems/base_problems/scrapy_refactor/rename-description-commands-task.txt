@@ -1,0 +1,1 @@
+Rename the short_desc and the long_desc for all the scrapy/commands to short_description and long_description and update the repository for those references.

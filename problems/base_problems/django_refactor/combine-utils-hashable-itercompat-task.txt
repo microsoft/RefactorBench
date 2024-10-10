@@ -1,0 +1,1 @@
+Combine the utils files hashable and itercompat as a new file called able.py and remove the two of them, combine the tests too.

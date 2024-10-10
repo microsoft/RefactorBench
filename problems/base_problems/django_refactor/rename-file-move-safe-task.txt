@@ -1,0 +1,1 @@
+rename file_move_safe to safe_file_move and update repo accordingly. update the old doc releases to say "now changed to safe_file_move" whenever they reference the old function

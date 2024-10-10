@@ -1,0 +1,1 @@
+Refactor `enable_pretty_logging` into a method in `OptionParser`.

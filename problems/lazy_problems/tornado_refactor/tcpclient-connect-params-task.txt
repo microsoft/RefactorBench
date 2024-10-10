@@ -1,0 +1,1 @@
+Introduce a dataclass for TCP client configurations in the repo.

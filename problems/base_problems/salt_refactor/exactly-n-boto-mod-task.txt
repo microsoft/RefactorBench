@@ -1,0 +1,1 @@
+Keep the exactly_n and exactly_1 functions in botomod and just define the functions in boto3mod as the import of imported_exactly_n and imported_exactly_1 so the code isn't as repetitive.

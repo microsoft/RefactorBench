@@ -1,0 +1,1 @@
+move the url functions outside of the main class in commands/genspider to utils url and update the imports accordingly. 

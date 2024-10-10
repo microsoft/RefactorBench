@@ -1,0 +1,1 @@
+Add a logging parameter to disconnect_all in signal.py in utils. Make the base case true and make sure any calls in tests have log=False

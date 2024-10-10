@@ -1,0 +1,1 @@
+Can you rename lenient_lowercase in lib/ansible/module_utils/common/text/formatters.py to lowercase_of_list. Can you update the filenames for the testing and all the references of lenient_lowercase to lowercase_of_list in the repository.

@@ -1,0 +1,1 @@
+Rename data.py in ansible/inventory to inventory_data.py and update all the references/imports throughout the repository based on that. 

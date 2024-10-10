@@ -1,0 +1,1 @@
+Add a log boolean parameter to recursive_diff in data.py and keep the base case as false. Then make all usages throughout the repository except for testing files as True. All internal recursive calls from the function should follow the initial log setting as well.

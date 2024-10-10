@@ -1,0 +1,1 @@
+Change resolve_error_handler to have a logging parameter that turns on log statements. Change all references to have the logging set as false.

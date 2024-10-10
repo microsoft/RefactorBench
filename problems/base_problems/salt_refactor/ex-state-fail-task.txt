@@ -1,0 +1,1 @@
+Rename EX_STATE_FAILURE to EX_STATE_FAIL and update all references throughout the repository.

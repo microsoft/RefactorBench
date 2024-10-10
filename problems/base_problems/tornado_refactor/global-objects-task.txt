@@ -1,0 +1,1 @@
+tornado.concurrent.dummy_executor is supposed to be referenced globally. Move it into a `_globals.py`.

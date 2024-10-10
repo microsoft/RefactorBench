@@ -1,0 +1,1 @@
+Shift sitemap_urls_from_robots.py content from sitemap.py to url.py and adjust all related references.

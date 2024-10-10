@@ -1,0 +1,1 @@
+Can you add a log boolean parameter to get_flashed_messages and keep the base case as false. In the test calls of the function make the log=True.

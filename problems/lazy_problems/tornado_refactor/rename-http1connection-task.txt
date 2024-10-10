@@ -1,0 +1,1 @@
+Rename the HTTP1Connection class to HTTP1xConnection and update all references accordingly.

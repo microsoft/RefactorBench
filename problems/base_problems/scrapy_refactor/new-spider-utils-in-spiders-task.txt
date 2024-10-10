@@ -1,0 +1,1 @@
+Create a new file called spider_utils.py in scrapy/spiders and take all functions outside of a class in all the files in scrapy/spider and put them in it. Update all the imports accordingly, and don't change variable names

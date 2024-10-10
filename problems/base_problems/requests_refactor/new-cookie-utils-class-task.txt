@@ -1,0 +1,1 @@
+Create a new class called CookieUtils for the functions in cookies.py 'extract_cookies_to_jar', 'get_cookie_header', 'remove_cookie_by_name', 'cookiejar_from_dict', 'merge_cookies', '_copy_cookie_jar', 'create_cookie', 'morsel_to_cookie'

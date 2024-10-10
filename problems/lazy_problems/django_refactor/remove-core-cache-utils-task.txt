@@ -1,0 +1,1 @@
+Remove the cache utils from django/core and integrate directly where used.

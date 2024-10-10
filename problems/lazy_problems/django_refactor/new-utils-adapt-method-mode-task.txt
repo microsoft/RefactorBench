@@ -1,0 +1,1 @@
+Move adapt_method_mode from base.py to handler_utils.py and adjust its references.

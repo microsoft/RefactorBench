@@ -1,0 +1,1 @@
+Rename params.py to param.py and then update the whole repo based on that new name change.

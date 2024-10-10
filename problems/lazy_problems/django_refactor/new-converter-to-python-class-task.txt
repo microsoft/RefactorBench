@@ -1,0 +1,1 @@
+Add a string-to-python converter class to the utils in django/db/backends.

@@ -1,0 +1,1 @@
+Refactor `tornado/options.py` by relocating its functions to `global_options.py` and adjust imports throughout the repository.

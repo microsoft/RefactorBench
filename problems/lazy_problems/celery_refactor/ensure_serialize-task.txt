@@ -1,0 +1,1 @@
+Rename the function and adjust all its references in the codebase.

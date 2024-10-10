@@ -1,0 +1,1 @@
+move sitemap_urls_from_robots.py in sitemap.py to url.py and update the repository references accordingly. Keep the tests in the same place just change the imports.

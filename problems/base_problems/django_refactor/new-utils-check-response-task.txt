@@ -1,0 +1,1 @@
+Move the check_response function out of the class it is in and put it in a file called handler_utils.py, update the usage of the function based on that.

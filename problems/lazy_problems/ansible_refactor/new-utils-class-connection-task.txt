@@ -1,0 +1,1 @@
+Refactor connection.py to use a new class, ConnectionUtils.

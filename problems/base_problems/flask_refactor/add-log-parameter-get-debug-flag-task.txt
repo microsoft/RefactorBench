@@ -1,0 +1,1 @@
+Import logging and add a log boolean parameter to get_debug_flag and make the base case false. Make all usages except the ones in tests as log=True.

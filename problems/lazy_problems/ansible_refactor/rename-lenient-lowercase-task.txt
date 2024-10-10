@@ -1,0 +1,1 @@
+Rename lenient_lowercase to lowercase_of_list and update all references throughout the repository.

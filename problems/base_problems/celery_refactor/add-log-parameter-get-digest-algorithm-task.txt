@@ -1,0 +1,1 @@
+Can you add a log boolean parameter to get_digest_algorithm and keep the base as log=False and then in all references except testing files make log=True

@@ -1,0 +1,1 @@
+Merge hashable and itercompat into a single file named able.py and update their tests accordingly.

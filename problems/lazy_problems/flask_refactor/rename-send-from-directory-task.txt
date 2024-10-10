@@ -1,0 +1,1 @@
+Rename the helper function for clarity but maintain external API usage.

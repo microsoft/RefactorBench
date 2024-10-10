@@ -1,0 +1,1 @@
+Rename and update usage of render_template_string in flask.

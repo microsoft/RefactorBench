@@ -1,0 +1,1 @@
+Introduce an optional logging parameter in the generate_option_id_for_path function, defaulting to false.

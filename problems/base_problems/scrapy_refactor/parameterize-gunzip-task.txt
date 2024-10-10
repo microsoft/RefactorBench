@@ -1,0 +1,1 @@
+Encapsulate the parameters in gunzip into a new class called GunzipParams and update all references within the repository to create a GunzipParams object.

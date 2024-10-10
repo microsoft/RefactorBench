@@ -1,0 +1,1 @@
+Add the none handling based on django/db/models/fields/__init__ to the duration string function in utils/duration so we can just call the function there. add a test_none in the appropriate place for the none handling too.

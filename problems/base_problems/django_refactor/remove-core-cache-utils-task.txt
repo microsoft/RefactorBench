@@ -1,0 +1,1 @@
+remove the django/core/cache utils and put that function where it is called. Update the docs and tests with this new location for the function

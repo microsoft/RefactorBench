@@ -1,0 +1,1 @@
+Rename exceptions_handlers.py to handlers.py and update the entire repository based on this change.

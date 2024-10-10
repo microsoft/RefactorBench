@@ -1,0 +1,1 @@
+Add a log boolean parameter in the generate_option_id_for_path function and keep the base case false. For all calls through the codebase make log=True.

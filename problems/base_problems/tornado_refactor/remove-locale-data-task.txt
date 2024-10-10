@@ -1,0 +1,1 @@
+tornado._locale_data is only used by tornado.locale. Move the locale data into locale, and remove the original file.

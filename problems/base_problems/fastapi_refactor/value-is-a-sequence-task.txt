@@ -1,0 +1,1 @@
+Rename value_is_sequence to value_is_a_sequence and update usage in the repo.

@@ -1,0 +1,1 @@
+Move and update the Resolver classes in the project.

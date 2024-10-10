@@ -1,0 +1,1 @@
+Move expand_router_string to celery/app/utils.py and import it into routes.

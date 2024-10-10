@@ -1,0 +1,1 @@
+Add a log parameter with a default value to the xmliter function and adjust it in test calls.

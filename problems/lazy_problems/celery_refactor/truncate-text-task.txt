@@ -1,0 +1,1 @@
+Rename the truncate function in text.py to truncate_text and adjust all references accordingly.

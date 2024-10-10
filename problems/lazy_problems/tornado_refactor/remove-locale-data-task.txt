@@ -1,0 +1,1 @@
+Move the locale data to a more appropriate location.

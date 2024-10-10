@@ -1,0 +1,1 @@
+Add a ConverterToPython class to the utils.py in django/db/backends for the functions that go from string to python. Update the repo accordingly

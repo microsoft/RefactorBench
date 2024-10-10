@@ -1,0 +1,1 @@
+Add a log parameter to get_digest_algorithm, defaulting to False, and set it to True in all non-testing references.

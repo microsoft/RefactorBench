@@ -1,0 +1,1 @@
+Move all the content from quoting to splitter in lib/ansible/parsing and update all the references in the repository.

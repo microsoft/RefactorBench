@@ -1,0 +1,1 @@
+Change the NotSupported exception to Unsupported and update the repository references with the new exception.

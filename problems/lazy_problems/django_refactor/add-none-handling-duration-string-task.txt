@@ -1,0 +1,1 @@
+Add none handling to the duration string function and include a corresponding test.

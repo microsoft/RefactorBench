@@ -1,0 +1,1 @@
+Rename the core function stream_template_string into stream_template_str but keep the package init to be stream_template_string.

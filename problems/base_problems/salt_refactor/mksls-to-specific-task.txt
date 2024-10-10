@@ -1,0 +1,1 @@
+Rename all the mksls to new function names based on the conversions they actually do. Make all three autoyast_to_sls, kickstart_to_sls, and preseed_to_sls

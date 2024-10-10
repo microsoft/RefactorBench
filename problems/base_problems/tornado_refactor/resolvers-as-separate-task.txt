@@ -1,0 +1,1 @@
+Can you move the Resolver, and its child classes in tornado.netutils into a newly created file called resolver.py. Also update all usages through the repository.

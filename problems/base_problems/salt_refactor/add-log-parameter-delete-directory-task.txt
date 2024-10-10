@@ -1,0 +1,1 @@
+Add a log boolean parameter to delete_directory function and make the base log=False, but for all calls excepts in tests make log=True.

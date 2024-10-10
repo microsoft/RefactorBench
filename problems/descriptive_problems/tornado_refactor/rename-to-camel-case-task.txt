@@ -1,0 +1,1 @@
+Rename the method `get_new_ioloop()` in the `AsyncTestCase` class to `getNewIoLoop()` in the `testing.py` file, and ensure all references in the `gen_test.py` file, also under the Tornado framework, are updated to reflect this change. Additionally, check and update any other occurrences across the entire repository where this method might be called or referenced.

@@ -1,0 +1,1 @@
+Adjust the class name in scrapy/utils/testproc.py to match the filename and update all references throughout the repository.

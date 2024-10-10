@@ -1,0 +1,1 @@
+Update the identifier 'pem_finger' to 'pem_fingerprint' and adjust its references accordingly in the repository.

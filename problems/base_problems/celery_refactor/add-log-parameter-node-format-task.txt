@@ -1,0 +1,1 @@
+Add a log boolean parameter to node_format and make the base case False, make all calls throughout the repo log=True

@@ -1,0 +1,1 @@
+Rename the method `tornado.testing.AsyncTestCase.get_new_ioloop()` to camel case: getNewIoLoop() and update all references in the repo accordingly.

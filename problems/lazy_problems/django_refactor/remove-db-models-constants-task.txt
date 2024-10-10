@@ -1,0 +1,1 @@
+Shift contents from django/db/models/constants to base and make necessary repo updates.

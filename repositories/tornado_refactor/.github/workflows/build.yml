@@ -1,0 +1,107 @@
+# The "build" workflow produces wheels (and the sdist) for all python
+# versions/platforms. Where possible (i.e. the build is not a cross-compile),
+# the test suite is also run for the wheel (this test covers fewer
+# configurations than the "test" workflow and tox.ini).
+name: Build
+
+on:
+  push:
+    branches:
+      # Run on release branches. This gives us a chance to detect rot in this
+      # configuration before pushing a tag (which we'd rather not have to undo).
+      - "branch[0-9]*"
+    tags:
+      # The main purpose of this workflow is to build wheels for release tags.
+      # It runs automatically on tags matching this pattern and pushes to pypi.
+      - "v*"
+  workflow_dispatch:
+    # Allow this workflow to be run manually (pushing to testpypi instead of pypi)
+
+env:
+  python-version: '3.9'
+
+jobs:
+  build_sdist:
+    name: Build sdist
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        name: Install Python
+        with:
+          python-version: ${{ env.python-version }}
+
+      - name: Check metadata
+        run: "python setup.py check"
+      - name: Build sdist
+        run: "python setup.py sdist && ls -l dist"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: artifacts-sdist
+          path: ./dist/tornado-*.tar.gz
+
+  build_wheels:
+    name: Build wheels on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, windows-2022, macos-12]
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        name: Install Python
+        with:
+          python-version: ${{ env.python-version }}
+      - name: Set up QEMU
+        if: runner.os == 'Linux'
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: all
+
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v2.18
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: artifacts-${{ matrix.os }}
+          path: ./wheelhouse/*.whl
+
+  upload_pypi_test:
+    name: Upload to PyPI (test)
+    needs: [build_wheels, build_sdist]
+    runs-on: ubuntu-22.04
+    if: github.repository == 'tornadoweb/tornado' && github.event_name == 'workflow_dispatch'
+    permissions:
+      # This permission is required for pypi's "trusted publisher" feature
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: artifacts-*
+          path: dist
+          merge-multiple: true
+
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          skip-existing: true
+
+  upload_pypi:
+    name: Upload to PyPI (prod)
+    needs: [build_wheels, build_sdist]
+    runs-on: ubuntu-22.04
+    if: github.repository == 'tornadoweb/tornado' && github.event_name == 'push' && github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
+    permissions:
+      # This permission is required for pypi's "trusted publisher" feature
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: artifacts-*
+          path: dist
+          merge-multiple: true
+
+      - uses: pypa/gh-action-pypi-publish@release/v1

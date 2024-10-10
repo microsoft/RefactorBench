@@ -1,0 +1,1 @@
+Rename the EX_UNAVAILABLE exitcode to EX_UNAVAIL for brevity and update the repository based on that.

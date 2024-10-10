@@ -1,0 +1,1 @@
+In base.py can you take out the adapt_method_mode function and put it in a file called handler_utils.py and update all references in the repo.

@@ -1,0 +1,94 @@
+codecov:
+  ci:
+    - github.com
+
+  max_report_age: 72          # The age, in hours, you want coverage reports to expire at, or if you
+                              # want to disable this check. Expired reports will not be processed by codecov.
+  require_ci_to_pass: false
+
+  notify:
+    wait_for_ci: true         # Should Codecov wait for all CI statuses to complete before sending ours.
+                              # Note: Codecov considers all non-codecov statuses to be CI statuses
+#    manual_trigger: true      # We manually tell codecov to merge and process all uploaded coverage reports
+
+
+ignore:
+  - ^*.py$                    # python files at the repo root, ie, setup.py
+  - doc/.*                    # ignore any code under doc/
+  - salt/ext/.*               # ignore any code under salt/ext
+
+coverage:
+  round: up
+  range: 70..100
+  precision: 2
+
+  status:
+    project:
+      default:
+        target: auto          # auto compares coverage to the previous base commit
+        threshold: 5%         # adjust accordingly based on how flaky your tests are
+                              # this allows a 5% drop from the previous base commit coverage
+        flags:
+          - salt
+          - tests
+
+      salt:                   # declare a new status context "salt"
+        paths:
+          - "!tests/"         # remove all files in "tests/"
+        target: auto          # will use the coverage from the base commit (pull request base or parent commit) coverage to compare against.
+        flags:
+          - salt
+
+      tests:                  # declare a new status context "tests"
+        paths:
+          - "!salt/"          # only include coverage in "tests/" folder
+        target: auto          # auto while we get this going
+        flags:
+          - tests
+
+    patch:                    # pull requests only: this commit status will measure the
+                              # entire pull requests Coverage Diff. Checking if the lines
+                              # adjusted are covered at least X%.
+      default:
+        target: auto          # auto compares coverage to the previous base commit
+        threshold: 5%         # adjust accordingly based on how flaky your tests are
+                              # this allows a 5% drop from the previous base commit coverage
+
+flags:
+  salt:
+    paths:
+      - salt/
+    carryforward: false       # https://docs.codecov.io/docs/carryforward-flags
+  tests:
+    paths:
+      - tests/
+    carryforward: false
+  pkg:
+    paths:
+      - pkg/tests
+    carryforward: false
+  unit:
+    paths:
+      - tests/unit
+      - tests/pytests/unit
+    carryforward: false
+  functional:
+    paths:
+      - tests/pytests/functional
+    carryforward: false
+  scenarios:
+    paths:
+      - tests/pytests/scenarios
+    carryforward: false
+  integration:
+    paths:
+      - tests/integration
+      - tests/pytests/integration
+    carryforward: false
+
+comment:
+  layout: "reach, diff, flags, files"
+  behavior: new                  # Comment posting behaviour
+                                 #   default: update, if exists. Otherwise post new.
+                                 #   once: update, if exists. Otherwise post new. Skip if deleted.
+                                 #   new: delete old and post new.

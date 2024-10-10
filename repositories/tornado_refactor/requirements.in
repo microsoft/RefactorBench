@@ -1,0 +1,8 @@
+black
+flake8
+mypy>=0.941
+pip-tools
+sphinx
+sphinx_rtd_theme
+types-pycurl
+tox

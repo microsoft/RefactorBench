@@ -1,0 +1,1 @@
+Add logging to the constant_time_compare function with a boolean parameter and update the codebase accordingly. Keep log as false base in the function, but make it true throughout instances in the code except for the test suite.

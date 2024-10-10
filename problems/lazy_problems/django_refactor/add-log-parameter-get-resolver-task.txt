@@ -1,0 +1,1 @@
+Add a logging parameter to get_resolver and disable logging in all references.

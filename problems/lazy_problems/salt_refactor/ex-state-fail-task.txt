@@ -1,0 +1,1 @@
+Rename the enumeration and update all its references in the repo.

@@ -1,0 +1,1 @@
+Integrate optional logging into the constant_time_compare function and adjust usage as needed, excluding the test suite.

@@ -1,0 +1,1 @@
+Update the is_systemd_managed parameter in service.py to include a default log option.

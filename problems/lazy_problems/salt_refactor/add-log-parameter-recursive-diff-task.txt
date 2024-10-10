@@ -1,0 +1,1 @@
+Add a log parameter to recursive_diff and adjust its usage accordingly.

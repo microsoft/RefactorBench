@@ -1,0 +1,1 @@
+Can you move only resolve_all from annotations to a new file called annotations_utils.py. Make sure to import the match functions from celery.app.annotations

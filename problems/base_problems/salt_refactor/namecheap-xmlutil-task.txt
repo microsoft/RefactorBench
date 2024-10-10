@@ -1,0 +1,1 @@
+Move the to_dict and to_value functions in namecheap to xmlutil.py and update all references accordingly.

@@ -1,0 +1,1 @@
+Rename the helper function send_from_directory to send_from_directory_helper but keep the overall flask usage as send_from_directory

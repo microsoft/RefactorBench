@@ -1,0 +1,1 @@
+Introduce a logging parameter to the function that defaults to False, and enable it everywhere except in tests.

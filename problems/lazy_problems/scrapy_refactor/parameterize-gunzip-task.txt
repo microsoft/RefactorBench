@@ -1,0 +1,1 @@
+Introduce a GunzipParams class to manage gunzip parameters.

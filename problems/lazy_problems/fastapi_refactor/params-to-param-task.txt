@@ -1,0 +1,1 @@
+Rename and update the repository files for the new script name.

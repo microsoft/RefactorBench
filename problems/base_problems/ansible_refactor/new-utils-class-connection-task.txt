@@ -1,0 +1,1 @@
+Change all the standalone functions in connection.py with a new class called ConnectionUtils and alter all the usages of those functions accordingly.

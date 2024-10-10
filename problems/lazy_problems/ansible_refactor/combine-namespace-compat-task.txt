@@ -1,0 +1,1 @@
+Consolidate namespace.py classes into compat.py and adjust references.

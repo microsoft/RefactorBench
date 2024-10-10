@@ -1,0 +1,1 @@
+Create a ReferenceContext class inside /django/db/migrations/utils for all the parameters in field_references. Use this class in all calls to field_references

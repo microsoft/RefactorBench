@@ -1,0 +1,1 @@
+Resolve the relay import in test_request of mro_lookup to just import from the file it was defined in.

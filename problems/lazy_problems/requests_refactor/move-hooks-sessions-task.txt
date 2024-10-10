@@ -1,0 +1,1 @@
+Shift the hooks.py contents to sessions.py and adjust references within the repo.

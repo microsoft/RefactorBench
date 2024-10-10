@@ -1,0 +1,1 @@
+Rename LookupDict in structures.py to DictLookup and update all the references in the repo

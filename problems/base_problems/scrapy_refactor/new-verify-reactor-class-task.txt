@@ -1,0 +1,1 @@
+Create a new class called VerifyReactor for the verify_installed and is_asyncio_reactor_installed functions within the reactor.py in utils and update the calls of the functions and docs in the repository accordingly.

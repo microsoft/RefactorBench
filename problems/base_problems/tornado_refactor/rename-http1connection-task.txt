@@ -1,0 +1,1 @@
+Rename the HTTP1Connection class to HTTP1xConnection and do not change any related classes function or filenames because of this. Update all references and files though with the new name.

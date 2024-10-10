@@ -1,0 +1,1 @@
+Add logging to the get_debug_flag function and adjust log parameter usage accordingly.

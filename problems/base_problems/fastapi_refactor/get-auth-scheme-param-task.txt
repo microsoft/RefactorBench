@@ -1,0 +1,1 @@
+Rename get_authorization_scheme_param to get_auth_scheme_param and update the usages throughout the repo.

@@ -1,0 +1,1 @@
+Add a log parameter to get_flashed_messages, defaulting to false.

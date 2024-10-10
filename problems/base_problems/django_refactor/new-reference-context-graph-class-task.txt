@@ -1,0 +1,1 @@
+Create a ReferenceContext class inside /django/db/migrations/graph for all the parameters in add_dependency. Use this class in all calls to add_dependency.

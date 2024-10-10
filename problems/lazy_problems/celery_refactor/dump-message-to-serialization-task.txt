@@ -1,0 +1,1 @@
+Shift dump_message to utils serialization.py and make necessary updates to align with this change.

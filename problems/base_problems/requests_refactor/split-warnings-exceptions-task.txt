@@ -1,0 +1,1 @@
+Create a warnings.py file alongside the exceptions.py file and move all the warnings in exceptions to it and update all the references in the repository accordingly.

@@ -1,0 +1,1 @@
+Keep the paged_call function in botomod and just define the function in boto3mod as the import of imported_paged_call so the code isn't as repetitive.

@@ -1,0 +1,1 @@
+Update the naming convention for description fields in scrapy commands.

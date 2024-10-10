@@ -1,0 +1,1 @@
+Shift the function from config.py to a new file within the same directory.

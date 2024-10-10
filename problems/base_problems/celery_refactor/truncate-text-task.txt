@@ -1,0 +1,1 @@
+Rename truncate in text.py to truncate_text and update all the usages of the function throughout the repository.

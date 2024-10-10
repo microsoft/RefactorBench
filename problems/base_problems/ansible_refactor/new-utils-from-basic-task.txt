@@ -1,0 +1,1 @@
+Move heuristic_log_sanitize and missing_required_lib into a new utils.py file in module_utils, remove the old functions, and update all the references of those throughout the repository.

@@ -1,0 +1,1 @@
+Can you move the order_patterns and split_host_pattern functions from manager.py in inventory to a new file called patterns.py in inventory. Update all the imports in the repository, but don't create a new testing file for patterns.py.

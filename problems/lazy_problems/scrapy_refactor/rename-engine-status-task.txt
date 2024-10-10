@@ -1,0 +1,1 @@
+Rename engine_status functions in scrapy/utils/engine.py to start with an underscore and update references accordingly.

@@ -1,0 +1,1 @@
+Convert the from_key_val_list and the to_key_val_list functions into a singular function key_val_convert(value, to_dict=True) with the behavior that if to_dict is true, it behaves like from_key_val_list and If to_dict is False, it behaves like to_key_val_list. Update the rest of the repo accordingly.

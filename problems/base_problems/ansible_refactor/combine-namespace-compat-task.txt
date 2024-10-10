@@ -1,0 +1,1 @@
+Combine all the classes and information from namespace.py in module_utils/facts into compat.py and update all the references throughout the repository.

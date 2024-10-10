@@ -1,0 +1,1 @@
+Update `resolve_proxies` to include a logging option, defaulting to off in utils but on elsewhere.

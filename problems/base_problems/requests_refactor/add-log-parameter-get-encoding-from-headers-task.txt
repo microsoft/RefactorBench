@@ -1,0 +1,1 @@
+Add a log parameter to get_encoding_from_headers, make the base case false in the utils file and all the other files except tests should have the log=True
