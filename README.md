@@ -5,6 +5,9 @@ Refactoring benchmark of real-world, multi-hop tasks within the realm of code.
 
 
 # Attribution
+In this repository we contain the exact copies of repositories that were used for the task and test generation parts of RefactorBench. To run agents on these repositories, we recommend using SWE-agent's Docker solution where a copy of the repository is loaded onto an image and persists for all task instances. We find that this allows local running of RefactorBench (previously a huge blocker for democratizing access to software engineering agent research)! 
+
+
 This repository includes code from the Django project, licensed under the BSD License.
 
 - Original repository: https://github.com/django/django
