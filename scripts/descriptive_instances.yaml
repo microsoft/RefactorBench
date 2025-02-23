@@ -1,0 +1,1714 @@
+# https://swe-agent.com/latest/usage/batch_mode/ 
+# For reference on how to run SWE-agent on batch mode using this YAML file.
+
+# SWE-agent requires git repositories so we use forks of the repository at the checkout date. 
+# The repositories in this repo are not submodules and rather are static codebases.
+
+# Repo: flask_refactor
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/flask_refactor
+  problem_statement:
+    type: text
+    text: Update the helpers.py file by adding an import statement for the logging
+      module. Modify the 'get_debug_flag' function to include a new boolean parameter
+      named 'log', defaulting to False. Ensure that all existing calls to 'get_debug_flag'
+      across the files app.py, cli.py, and sansio/app.py pass the argument 'log=True',
+      except for calls made in the test files such as test_helpers.py where 'log'
+      should either be 'False' or omitted.
+    id: add-log-parameter-get-debug-flag-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/flask_refactor
+  problem_statement:
+    type: text
+    text: Identify and move all standalone functions (those not contained within any
+      class) from the file debughelpers.py to helpers.py within the Flask project's
+      'src/flask' directory. Ensure that after transferring these functions, you adjust
+      import statements in the repository that might be affected by this move. This
+      task specifically includes transferring functions such as 'attach_enctype_error_multidict',
+      '_dump_loader_info', and 'explain_template_loading_attempts'. Make sure these
+      functions are removed from debughelpers.py and correctly added and refactored
+      in helpers.py to maintain functionality.
+    id: debughelpers-to-helpers.py-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/flask_refactor
+  problem_statement:
+    type: text
+    text: Rename the function `render_template_string` to `render_template_str` in
+      the `templating.py` file of the Flask repository, making sure to update all
+      usages of this function name not only in the `templating.py` file but also in
+      the `__init__.py`, `test_templating.py`, `test_appctx.py`, `test_blueprints.py`,
+      `test_json.py` of the tests directory as well as the documentation files `api.rst`
+      and `templating.rst`. Ensure that after renaming, Flask should reference and
+      use the new function name `render_template_str` consistently across the codebase
+      and documentation.
+    id: render-template-str-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/flask_refactor
+  problem_statement:
+    type: text
+    text: In the file named 'templating.py', change the function name from 'stream_template_string'
+      to 'stream_template_str'. Ensure that in the 'flask/__init__.py' file, the function
+      'stream_template_str' from 'templating.py' is imported and still accessible
+      via the name 'stream_template_string'. This will allow the function to be used
+      with its original name throughout the rest of the codebase while reflecting
+      the updated function name internally.
+    id: stream-template-str-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/flask_refactor
+  problem_statement:
+    type: text
+    text: Please update the helper function named `send_from_directory` to `send_from_directory_helper`
+      in the file where it is defined. Ensure that all imports and usages of this
+      function in the `blueprints.py`, `__init__.py`, and `app.py` within the flask
+      source code are updated to reflect this change. Moreover, it's crucial to modify
+      the alias in the `__init__.py` so that `send_from_directory_helper` is still
+      referenced as `send_from_directory` where it’s being imported. This renaming
+      should be done while maintaining the current functionality where the helper
+      function assists in serving files from directories. Ensure also that the usage
+      of this function within tests, specifically in the function calls in `test_helpers.py`,
+      aligns with these changes while still accomplishing the same tasks.
+    id: rename-send-from-directory-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/flask_refactor
+  problem_statement:
+    type: text
+    text: Please update the file named 'helpers.py' in the Flask framework to include
+      an additional boolean parameter 'log' to the function 'get_flashed_messages',
+      setting its default value to False. Additionally, modify the relevant test cases
+      in the file 'test_basic.py' to ensure that all calls to 'get_flashed_messages'
+      explicitly pass the argument 'log=True'. This change intends to enhance debugging
+      capabilities by allowing the logging of messages when necessary.
+    id: add-log-parameter-get-flashed-messages-task
+
+# Repo: ansible_refactor
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/ansible_refactor
+  problem_statement:
+    type: text
+    text: Refactor the 'connection.py' file in the Ansible library by creating a new
+      class called ConnectionUtils that combines the standalone functions write_to_stream,
+      send_data, recv_data, exec_command, and request_builder. After creating this
+      class, update all references to these functions in the files 'task_executor.py',
+      'ansible_connection_cli_stub.py', and within 'connection.py' itself to use the
+      new ConnectionUtils class. Ensure any relevant imports or function usages are
+      adjusted accordingly in these files.
+    id: new-utils-class-connection-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/ansible_refactor
+  problem_statement:
+    type: text
+    text: Add a boolean parameter named 'log' to the function 'is_systemd_managed'
+      in the file 'service.py' within the 'module_utils' folder, defaulting the parameter
+      to false. In the files 'service.py' and 'service_facts.py' under the 'modules'
+      folder, update all calls to 'is_systemd_managed' to pass this parameter with
+      the value true. Ensure that for any usages in test environments or modules where
+      this function is used indirectly, such as in 'systemd.py' and 'hostname.py',
+      the parameter is not passed or altered.
+    id: add-log-parameter-is-systemd-managed-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/ansible_refactor
+  problem_statement:
+    type: text
+    text: Transfer all classes and related information from the file namespace.py
+      located in the folder module_utils/facts to the file compat.py within the same
+      folder. After completing the transfer, update the references to these classes
+      in relevant files throughout the repository, including ansible_collector.py,
+      facter.py, ohai.py, setup.py, and test_ansible_collector.py, to ensure that
+      they now correctly point to compat.py. Make sure that the classes are not referenced
+      from namespace.py in these files after the transfer.
+    id: combine-namespace-compat-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/ansible_refactor
+  problem_statement:
+    type: text
+    text: Please change the function name from `parse_kv` to `parse_key_value` in
+      the `splitter.py` file for enhanced clarity. Following this, go through the
+      repository and update all references to this function in various files like
+      `test-module.py`, `adhoc.py`, `console.py`, `mod_args.py`, `csvfile.py`, `password.py`,
+      `sequence.py`, and `vars.py` among others where this function is imported or
+      called, ensuring the new name is consistently used across all files. This name
+      change will help in maintaining standard naming conventions and improve code
+      readability in the repository.
+    id: parse_key_value-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/ansible_refactor
+  problem_statement:
+    type: text
+    text: Transfer all functionalities and associated content from the quoting.py
+      file to the splitter.py file within the lib/ansible/parsing directory of the
+      Ansible codebase. After moving the content, ensure that references in important
+      files such as config.py, dataloader.py, schema.py, and test_unquote.py are updated
+      to reflect the use of splitter.py instead of quoting.py. Additionally, ensure
+      that the quoting.py file is removed from the repository after successfully migrating
+      its contents and updating all necessary references.
+    id: move-quoting-splitter-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/ansible_refactor
+  problem_statement:
+    type: text
+    text: Create a new file named utils.py in the module_utils directory and transfer
+      the functions heuristic_log_sanitize and missing_required_lib into this new
+      file from their original locations. Remove these functions from their original
+      locations after transferring. Subsequently, update all the references to these
+      functions in the repository, ensuring files such as basic.py, packages.py, urls.py,
+      deb822_repository.py, expect.py, pip.py, wait_for.py, netconf __init__.py, missing_required_lib.py,
+      test_heuristic_log_sanitize.py in the module_utils library, and network_cli.py
+      in ansible_collections/ansible/netcommon plugins connection directory are pointing
+      to ansible.module_utils.utils. This ensures a cohesive usage across the differing
+      file dependencies that previously utilized these functions.
+    id: new-utils-from-basic-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/ansible_refactor
+  problem_statement:
+    type: text
+    text: Please rename the function 'sort_groups' to 'group_sort' in the file 'helpers.py'
+      within the 'ansible/inventory' directory, and ensure that this renamed function
+      is appropriately referenced as 'group_sort' in the files 'manager.py' in the
+      'ansible/vars' directory and elsewhere throughout the repository. Additionally,
+      verify that the 'group_sort' function in 'helpers.py' includes a particular
+      lambda expression for sorting and ensure that it is being correctly called in
+      the methods 'get_group_vars' in the same 'helpers.py' file and 'get_vars' of
+      the 'VariableManager' class within 'manager.py'.
+    id: sort-groups-to-group-sort-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/ansible_refactor
+  problem_statement:
+    type: text
+    text: Relocate the functions `order_patterns` and `split_host_pattern` from the
+      file `manager.py` within the `inventory` directory to a newly created file named
+      `patterns.py` in the same `inventory` directory. Subsequent to this change,
+      ensure to update all references to these functions throughout the entire repository
+      to reflect their new location in `patterns.py`. However, do not create a new
+      test file specifically for `patterns.py`.
+    id: new-inventory-patterns-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/ansible_refactor
+  problem_statement:
+    type: text
+    text: Please rename the function `lenient_lowercase` to `lowercase_of_list` in
+      the file named `formatters.py` located in `lib/ansible/module_utils/common/text`.
+      Additionally, update all references to `lenient_lowercase` across the repository,
+      including in the file named `basic.py` located in `lib/ansible/module_utils`,
+      and ensure the test file previously named `test_lenient_lowercase.py` in `test/units/module_utils/common/text/formatters`
+      is renamed to `test_lowercase_of_list.py`. Also, update the content of this
+      test file to reflect the new function name and ensure no traces of the old function
+      name remain in the comments or the code.
+    id: rename-lenient-lowercase-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/ansible_refactor
+  problem_statement:
+    type: text
+    text: Rename the file named data.py located in the ansible/inventory directory
+      to inventory_data.py. After renaming, identify and update all references and
+      imports of this file across the entire repository. Specifically, files like
+      manager.py and test_constructed.py will require updates to their import statements
+      to reflect the new filename. Ensure that after renaming, no file in the repository
+      is attempting to import from the old data.py file name.
+    id: data-to-inventory-data-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/ansible_refactor
+  problem_statement:
+    type: text
+    text: Modify the function `get_group_vars` in the file `helpers.py` located within
+      the `ansible/inventory` directory to include a new parameter named `log` with
+      a default value of `true`. Also, update calls to this function throughout the
+      repository to explicitly pass `log=False` where appropriate. This specifically
+      includes modifying the `get_vars` method within the `VariableManager` class
+      in `manager.py` under the `ansible/vars` directory, ensuring `log=False` is
+      used when calling `get_group_vars`. Other instances in the repository where
+      `get_group_vars` is called should not pass the `log` parameter unless explicitly
+      stated.
+    id: add-log-parameter-get-group-vars-task
+
+# Repo: django_refactor
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/django_refactor
+  problem_statement:
+    type: text
+    text: Create a new class named `ReferenceContext` in the `utils.py` file under
+      the `django/db/migrations` directory to encapsulate all parameters used in `field_references`.
+      Then, modify the `field_references` method calls in the `FieldOperation` class
+      in the `fields.py` file and the `CreateModel` class in the `models.py` file
+      under the `django/db/migrations/operations` directory to use instances of this
+      new `ReferenceContext` class instead of the current argument setup. Make sure
+      to add necessary imports of `ReferenceContext` in these files.
+    id: new-reference-context-field-class-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/django_refactor
+  problem_statement:
+    type: text
+    text: Rename the function `file_move_safe` to `safe_file_move` in the file `move.py`
+      located within the django/core/files/ directory, and modify other files in the
+      repository where this function is imported or called, specifically within the
+      filebased.py and filesystem.py in the django/core/cache/backends/ and django/core/files/storage/
+      directories respectively, as well as the tests.py in the tests/files/ directory.
+      Additionally, update the old documentation or release note files, especially
+      `1.11.2.txt` in the docs/releases/ directory, to indicate "now changed to safe_file_move"
+      wherever the old function name was referenced. Ensure that all related comments
+      within these files also reflect this new function name.
+    id: rename-file-move-safe-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/django_refactor
+  problem_statement:
+    type: text
+    text: Develop a class within the 'utils.py' file located in the 'django/forms'
+      directory that encapsulates the timezone-related functions 'from_current_timezone'
+      and 'to_current_timezone'. Once the class is created, make sure all existing
+      calls to these functions throughout the repository (especially in files like
+      'fields.py' and 'widgets.py' within the same directory) are updated to use the
+      new class. Additionally, ensure that this new class is imported and utilized
+      correctly in these files.
+    id: new-timezone-class-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/django_refactor
+  problem_statement:
+    type: text
+    text: Transfer the _path_from_module function from the config.py file (located
+      in the 'apps' directory of the Django project) to a newly created file named
+      apps_utils.py within the same 'apps' directory. Ensure that after moving the
+      function, it is correctly imported in the config.py file, where it was originally
+      located. Additionally, verify that the _path_from_module function is implemented
+      with the necessary 'module' parameter in the new apps_utils.py file.
+    id: new-utils-path-from-module-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/django_refactor
+  problem_statement:
+    type: text
+    text: Migrate all the relevant content and dependencies from the file named dates.py
+      to dateformat.py within the Django utils directory. Ensure that constants such
+      as WEEKDAYS, WEEKDAYS_ABBR, MONTHS, MONTHS_3, MONTHS_AP, and MONTHS_ALT are
+      transferred correctly to dateformat.py. Following this, verify that the imports
+      in widgets.py and test_selectdatewidget.py are updated to reflect these changes,
+      specifically ensuring that they now import from dateformat.py and no longer
+      reference dates.py, which should be deleted from the repository after the migration.
+    id: combine-utils-dates-dateformat-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/django_refactor
+  problem_statement:
+    type: text
+    text: 'Split the existing function ''parse_apps_and_model_labels'' in the file
+      ''utils.py'' into two separate functions: one function named ''get_apps_from_labels''
+      that exclusively handles the extraction of apps and another function named ''get_models_from_labels''
+      for handling the extraction of models. Ensure that after making this change,
+      the original ''parse_apps_and_model_labels'' function no longer exists in the
+      codebase, and both new functions are being correctly imported and utilized in
+      ''loaddata.py'' and ''dumpdata.py''.'
+    id: split-parse-apps-and-model-labels-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/django_refactor
+  problem_statement:
+    type: text
+    text: Combine the functionality of 'hashable.py' and 'itercompat.py' located in
+      the 'django/utils' directory into a new file named 'able.py' within the same
+      directory. Transfer corresponding tests from 'test_hashable.py' and 'test_itercompat.py'
+      in the 'tests/utils_tests' directory to a new test file named 'test_able.py'.
+      After the combination, ensure that the original files ('hashable.py', 'itercompat.py',
+      'test_hashable.py', and 'test_itercompat.py') are deleted. Additionally, update
+      any import statements in different parts of the codebase to import from 'able.py'
+      instead of from 'hashable.py' and 'itercompat.py'.
+    id: combine-utils-hashable-itercompat-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/django_refactor
+  problem_statement:
+    type: text
+    text: Modify the function 'get_resolver' in the file 'resolvers.py' to include
+      an additional parameter named 'logging' which should default to 'False'. This
+      parameter will enable log statements when set to 'True'. Additionally, update
+      all existing calls to 'get_resolver' across various files including 'base.py',
+      'i18n.py', 'urls.py', 'exception.py', 'autoreload.py', 'views.py', and 'base.py'
+      under different directories to explicitly pass 'False' for this new 'logging'
+      parameter to ensure the log statements remain disabled by default in these existing
+      references.
+    id: add-log-parameter-get-resolver-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/django_refactor
+  problem_statement:
+    type: text
+    text: Modify the `duration_string` function in the file `duration.py` located
+      under the `utils` directory to handle cases where its input parameter is `None`,
+      drawing from existing patterns in the `DurationField` class's `value_to_string`
+      method within the `__init__.py` file in the `django/db/models/fields` directory.
+      Additionally, create a new test method named `test_none` in the `TestDurationString`
+      class within the `test_duration.py` file under `tests/utils_tests`, ensuring
+      it correctly checks for appropriate handling of `None` values in `duration_string`.
+    id: add-none-handling-duration-string-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/django_refactor
+  problem_statement:
+    type: text
+    text: 'In the file crypto.py found in the django/utils directory, modify the function
+      ''constant_time_compare'' to include an additional boolean parameter named ''log''
+      with a default value of False. This parameter should control logging within
+      the function. Update the usages of this function to pass the ''log'' parameter
+      as True in the following files: auth/__init__.py, auth/hashers.py, auth/tokens.py,
+      core/signing.py, and middleware/csrf.py in the django/contrib and django/core
+      directories. However, ensure that in the test files, particularly test_crypto.py
+      in the tests/utils_tests directory, the ''log'' parameter is explicitly set
+      to False when calling ''constant_time_compare''.'
+    id: add-log-parameter-constant-time-compare-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/django_refactor
+  problem_statement:
+    type: text
+    text: Modify the `resolve_error_handler` method in the `resolvers.py` file to
+      include an additional boolean parameter named `log` that controls the activation
+      of logging within the function, with the default value set to `false`. Ensure
+      that all existing calls to `resolve_error_handler` across the repository within
+      the `exception.py`, `urls.py`, and `tests.py` files specifically set this new
+      `log` parameter to `false`.
+    id: add-log-parameter-resolve-error-handler-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/django_refactor
+  problem_statement:
+    type: text
+    text: Create a new exception class named `PathTraversal` in the `exceptions.py`
+      file, which should inherit from the `SuspiciousOperation` class. Once added,
+      modify the `base.py` file where the `Storage` class methods `get_available_name`
+      and `generate_filename` are defined, ensuring these methods raise the `PathTraversal`
+      exception when needed. Also, remember to ensure the documentation in `exceptions.txt`
+      and functional testing are updated to reflect the changes to `PathTraversal`
+      handling in relevant methods and scenarios.
+    id: new-path-traversal-exception-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/django_refactor
+  problem_statement:
+    type: text
+    text: 'Create a new class named `ConverterToPython` in the existing file `utils.py`
+      located within the `django/db/backends` directory of the Django project repository.
+      This class should include methods for: `typecast_date`, `typecast_time`, and
+      `typecast_timestamp` to handle conversions from string types to Python objects.
+      Additionally, ensure that this class is correctly imported in both the `sqlite3/_functions.py`
+      file and the `mysql/base.py` file under the `django/db/backends` directory tree.
+      Update the repository with these changes to include the new functionality for
+      handling data type conversions.'
+    id: new-converter-to-python-class-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/django_refactor
+  problem_statement:
+    type: text
+    text: 'Please transfer all contents from the file named "constants" within the
+      "django/db/models" directory to the file named "base" located within the same
+      directory. Following this transfer, meticulously update all relevant import
+      statements across various files including, but not limited to: ''checks.py'',
+      ''options.py'', ''fields/__init__.py'', ''fields/json.py'', ''fields/related.py''
+      amongst others in the Django framework codebase, ensuring imports reference
+      "django.db.models.base" instead of "django.db.models.constants" for any components
+      that were moved.'
+    id: remove-db-models-constants-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/django_refactor
+  problem_statement:
+    type: text
+    text: Develop a new class named `ReferenceContext` within the file `graph.py`
+      located in the `/django/db/migrations/graph` directory. This class should encapsulate
+      all parameters previously used in the `add_dependency` method. Following the
+      creation of this class, ensure that the `add_dependency` method utilizes an
+      instance of `ReferenceContext` for its operations in the files `loader.py`,
+      `test_executor.py`, `test_graph.py`, and `test_autodetector.py`. This new implementation
+      should not be applied to the `deletion.py` file in the `/django/db/models` directory.
+    id: new-reference-context-graph-class-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/django_refactor
+  problem_statement:
+    type: text
+    text: Please relocate the `adapt_method_mode` function from the `base.py` file
+      to a new file named `handler_utils.py` and ensure all references to this function
+      within the repository are properly updated to reflect this change. This involves
+      not only moving the function but also adjusting any import statements in the
+      `base.py` and ensuring essential imports like `async_to_sync`, `iscoroutinefunction`,
+      and `sync_to_async` from `asgiref.sync` are present in the `handler_utils.py`
+      file. Additionally, confirm that parameters such as `is_async`, `method`, and
+      optional parameters like `method_is_async`, `debug`, and `name` are correctly
+      maintained in the function definition within the new file.
+    id: new-utils-adapt-method-mode-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/django_refactor
+  problem_statement:
+    type: text
+    text: Remove the file `utils.py` located within the `django/core/cache` directory
+      and transfer the function `make_template_fragment_key` to the file `cache.py`
+      in the `django/templatetags` directory. Ensure that the documentation updates
+      are made within the file `cache.txt` located under the `docs/topics` directory,
+      modifying all references to reflect the new location of this function. Also,
+      update the `tests.py` in the `tests/cache` directory to properly import `make_template_fragment_key`
+      from its new location in `cache.py`. Ensure that all associated tests and documentation
+      consistently reflect this change.
+    id: remove-core-cache-utils-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/django_refactor
+  problem_statement:
+    type: text
+    text: Extract the `check_response` function from its current location within a
+      class and place it into a separate file named `handler_utils.py`. Ensure that
+      the function accepts parameters 'response', 'callback', and an optional 'name'.
+      Upon relocating the function, update the relevant import statements in the `base.py`
+      file to reflect the new location of the `check_response` function, ensuring
+      it is correctly referenced from `handler_utils.py`.
+    id: new-utils-check-response-task
+
+# Repo: celery_refactor
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/celery_refactor
+  problem_statement:
+    type: text
+    text: Rename the file named autoretry.py to retry.py within the celery/app directory
+      and ensure all references throughout the repository are updated accordingly.
+      This includes updating imports in code files such as base.py, references in
+      documentation files like index.rst and bandit.json, and ensuring the respective
+      documentation files celery.app.autoretry.rst and celery.app.retry.rst are respectively
+      deleted and created under docs/reference. Ensure any newly created or updated
+      files correctly reflect the changes in their content.
+    id: autoretry-to-retry-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/celery_refactor
+  problem_statement:
+    type: text
+    text: In the file "nodenames.py" located within the "celery/utils" directory,
+      rename the function previously known as "host_format" to "format_host." Additionally,
+      ensure all references to this function across the repository are updated to
+      reflect this change, including ensuring "format_host" is present in the "__all__"
+      list within "nodenames.py". Review related files such as "worker.py" in the
+      "celery/bin" directory and "multi.py" in the "celery/apps" directory to verify
+      that these files correctly import and do not mistakenly call the outdated function
+      name.
+    id: rename-host-format-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/celery_refactor
+  problem_statement:
+    type: text
+    text: In the repository, locate the file named 'text.py' within the 'celery/utils'
+      directory and rename the function 'truncate' to 'truncate_text'. Ensure this
+      updated function name, 'truncate_text', is also modified across all other occurrences
+      throughout the repository. Additionally, verify and amend any related imports
+      and references in '__all__' declarations in the same 'text.py' and in other
+      files such as 'saferepr.py', 'base.py', 'canvas.py', 'manager.py', 'test_text.py',
+      and 'consumer.py' to reflect this change correctly.
+    id: truncate-text-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/celery_refactor
+  problem_statement:
+    type: text
+    text: Move the `expand_router_string` function to the `utils.py` file within the
+      `celery/app` directory, ensuring it is appropriately defined there. Afterward,
+      update the `routes.py` file in the same directory to import the `expand_router_string`
+      function from `celery.app.utils`. Additionally, make sure `expand_router_string`
+      is included in the `__all__` list inside `utils.py` to maintain proper module
+      exports.
+    id: expand-router-string-to-utils-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/celery_refactor
+  problem_statement:
+    type: text
+    text: In the file named test_request.py within the unit test directory for the
+      worker, modify the import statements to ensure that the function 'mro_lookup'
+      is directly imported from its original file instead of being relayed through
+      another module. Make sure this change is reflected by directly referencing the
+      source module 'celery.utils.objects' without any intermediate redirection. This
+      ensures that all dependencies and links in the test_request.py file are straightforward
+      and maintain clarity in module relationships.
+    id: object-mro-lookup-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/celery_refactor
+  problem_statement:
+    type: text
+    text: Transfer the `dump_message` function from the `amqp.py` file in the `celery/bin`
+      directory to the `serialization.py` file located in the `celery/utils` directory.
+      Make sure that the `amqp.py` file no longer includes the `dump_message` function
+      definition and is instead importing it from its new location in `serialization.py`.
+      Update all references and imports throughout the repository to reflect this
+      change, ensuring that `dump_message` is only defined in `serialization.py` and
+      correctly imported where necessary.
+    id: dump-message-to-serialization-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/celery_refactor
+  problem_statement:
+    type: text
+    text: Merge the implementation found in the _unpickle_task_v2 function into _unpickle_task
+      in the registry.py file. After combining these functions, remove any remnants
+      of _unpickle_task_v2 from the codebase. Subsequently, update all associated
+      tests, located in files such as task.py, test_registry.py and others within
+      the testing directory, ensuring that only references to _unpickle_task remain
+      without altering the fundamental purpose or nature of the tests.
+    id: combine-unpickle-task-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/celery_refactor
+  problem_statement:
+    type: text
+    text: Add a boolean parameter named 'log' with a default value of False to the
+      'node_format' function in the 'nodenames.py' file. Ensure you update all existing
+      calls to 'node_format' within the repository, setting this parameter to True.
+      Specifically, make sure to update the 'node_format' function calls in both 'worker.py'
+      and 'log.py' files to include this parameter with the value True.
+    id: add-log-parameter-node-format-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/celery_refactor
+  problem_statement:
+    type: text
+    text: Please relocate the function `evaluate_promises` from the file `functional.py`
+      to the file `serialization.py` within the `celery/utils` directory. After moving
+      the function, ensure all references to `evaluate_promises` within the project
+      are updated to reflect its new location in `serialization.py`. Additionally,
+      confirm that the necessary imports for `evaluate_promises` are correctly set
+      up in the `functional.py` file.
+    id: evaluate-promises-to-serialization-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/celery_refactor
+  problem_statement:
+    type: text
+    text: Please modify the function 'get_digest_algorithm' in the file named 'utils.py'
+      within the 'celery/security' directory to include an additional boolean parameter
+      named 'log'. Set the default value of this parameter to False. In files other
+      than those within the testing directories, adjust all calls to this function
+      to set the 'log' parameter to True. This detailed change affects how logging
+      behavior is controlled through this parameter across different usages in the
+      repository, ensuring that logging is enabled in operational contexts but can
+      be disabled for testing scenarios where the filename is 'test_key.py' or similar
+      test files.
+    id: add-log-parameter-get-digest-algorithm-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/celery_refactor
+  problem_statement:
+    type: text
+    text: Please move the `resolve_all` function from the existing file `annotations.py`
+      to a newly created file named `annotations_utils.py` within the same directory.
+      In the process, make sure to correctly import `_first_match` and `_first_match_any`
+      functions from `celery.app.annotations` into the `annotations_utils.py` file.
+      Update the `__all__` declaration in `annotations_utils.py` to include only `resolve_all`.
+      Ensure that the `annotations.py` file's `__all__` declaration is correctly adjusted
+      to exclude `resolve_all` if previously included, while retaining other necessary
+      exports like `MapAnnotation` and `prepare`.
+    id: annotation-utils-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/celery_refactor
+  problem_statement:
+    type: text
+    text: Change the name of the function `ensure_serializable` to `ensure_serialize`
+      in the file `serialization.py` located in the `celery/utils` directory. Additionally,
+      make sure to update all references and usage of this function across the entire
+      codebase, particularly ensuring imports and calls are correctly adjusted in
+      `serialization.py`, `base.py` from the `celery/backends` directory, and within
+      `test_serialization.py` and `test_base.py` under the `t/unit/utils` and `t/unit/backends`
+      directories, respectively.
+    id: ensure_serialize-task
+
+# Repo: fastapi_refactor
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/fastapi_refactor
+  problem_statement:
+    type: text
+    text: Rename the file 'exception_handlers.py' to 'handlers.py' in the FastAPI
+      module and ensure all references within the repository are updated to reflect
+      this new file name. Documents in multiple language directories under 'docs',
+      specifically in files like 'handling-errors.md', and source files such as 'applications.py'
+      and 'tutorial006.py' in the 'docs_src/handling_errors' and 'fastapi' directories
+      respectively, should be updated to use 'handlers.py' instead of 'exception_handlers.py'.
+      Ensure that relevant imports in 'applications.py' and 'tutorial006.py' are correctly
+      pointed to 'fastapi.handlers'.
+    id: exception-handlers-to-handlers-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/fastapi_refactor
+  problem_statement:
+    type: text
+    text: In the FastAPI repository, refactor the `value_is_sequence` function to
+      be renamed as `value_is_a_sequence` within the `_compat.py` file. Ensure all
+      references and usage of this function in `_compat.py` and other files such as
+      `utils.py` under `dependencies` reflect this name change. Additionally, verify
+      and update necessary imports to accommodate the new function name ensuring consistency
+      across the repository.
+    id: value-is-a-sequence-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/fastapi_refactor
+  problem_statement:
+    type: text
+    text: Please rename the file 'params.py' to 'param.py' in the 'fastapi' directory.
+      After renaming, you need to update relevant import statements and usage across
+      the entire codebase to reflect this change. Specifically, ensure that files
+      like '_compat.py', 'routing.py', 'param_functions.py', 'dependencies/utils.py',
+      'openapi/utils.py', 'applications.py', 'tests/test_param_class.py', and 'tests/test_params_repr.py'
+      reference 'param.py' correctly, replacing any 'params' usage with 'param'. This
+      update should harmonize the naming convention throughout the project.
+    id: params-to-param-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/fastapi_refactor
+  problem_statement:
+    type: text
+    text: Rename the file named 'utils.py' located in the 'openapi' folder of the
+      'fastapi' directory to 'get_utils.py'. Subsequently, update all references to
+      'utils.py' in the codebase, including Python scripts and Markdown documentation
+      files, to 'get_utils.py'. This change should reflect in various locations including
+      'applications.py', 'tutorial001.py' under 'docs_src/extending_openapi', and
+      'extending-openapi.md' files across different language directories in 'docs'.
+      Ensure updates are made wherever 'openapi.utils' is referenced.
+    id: openapi-get-utils-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/fastapi_refactor
+  problem_statement:
+    type: text
+    text: In the `utils.py` file within the `fastapi` directory, update the `generate_operation_id_for_path`
+      function by adding a new boolean parameter named 'log' and set its default value
+      to `False`. Furthermore, for every occurrence where this function is called
+      in the `utils.py` file located in the `fastapi/openapi` directory, ensure the
+      'log' parameter is explicitly passed with the value `True`.
+    id: add-log-parameter-generate-option-id-for-path-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/fastapi_refactor
+  problem_statement:
+    type: text
+    text: Please rename the function `get_authorization_scheme_param` to `get_auth_scheme_param`
+      in the file `utils.py` located in the `security` directory of the FastAPI repository.
+      Ensure that all instances where it was used or referred to are updated accordingly
+      in that file. Additionally, confirm the usage of this renamed function in the
+      `oauth2.py` and `http.py` files, also under the `security` directory, by updating
+      any imports or function calls that reference the original function name.
+    id: get-auth-scheme-param-task
+
+# Repo: requests_refactor
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/requests_refactor
+  problem_statement:
+    type: text
+    text: 'Implement a new class named CookieUtils in the file named cookies.py within
+      the requests directory. This class should encapsulate the following methods:
+      extract_cookies_to_jar, get_cookie_header, remove_cookie_by_name, cookiejar_from_dict,
+      merge_cookies, _copy_cookie_jar, create_cookie, and morsel_to_cookie. Additionally,
+      ensure that this new class, CookieUtils, is properly imported in the following
+      files within the requests directory: adapters.py, auth.py, models.py, sessions.py,
+      and utils.py. Also, confirm that the import of CookieUtils is correct in the
+      test_requests.py file in the tests directory.'
+    id: new-cookie-utils-class-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/requests_refactor
+  problem_statement:
+    type: text
+    text: Please transfer all contents from the file '_internal_utils.py' to 'utils.py'
+      within the 'requests' module and ensure this file, '_internal_utils.py', is
+      deleted after the transfer. Update all internal references in the application
+      notably in files like 'auth.py', 'cookies.py', 'models.py', 'sessions.py', and
+      'test_utils.py' to import necessary functions directly from 'requests.utils'
+      instead of 'requests._internal_utils'. This should include updates for imports
+      such as 'to_native_string' and other specific methods previously used from '_internal_utils'.
+    id: combine-internal-utils-utils-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/requests_refactor
+  problem_statement:
+    type: text
+    text: Remove the 'hooks.py' file from the 'src/requests' directory and integrate
+      its contents into the 'sessions.py' in the same directory. Ensure that all references
+      throughout the repository, including files like 'models.py' and 'test_requests.py',
+      are updated to import the necessary functions from 'sessions.py' instead of
+      'hooks.py'. Make sure 'sessions.py' does not contain any imports from the now-obsolete
+      'hooks.py'.
+    id: move-hooks-sessions-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/requests_refactor
+  problem_statement:
+    type: text
+    text: Enhance the function 'get_encoding_from_headers' located in the 'utils.py'
+      file by adding a new boolean parameter named 'log'. Set the default value of
+      the 'log' parameter to False. When this function is called in other files, such
+      as 'adapters.py', ensure that this 'log' parameter is explicitly set to True,
+      except in the test file 'test_utils.py', where the 'log' parameter should be
+      set to False.
+    id: add-log-parameter-get-encoding-from-headers-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/requests_refactor
+  problem_statement:
+    type: text
+    text: Create a new file named `warnings.py` in the same directory as `exceptions.py`
+      within the `requests` module, and transfer all warning-related classes (such
+      as `RequestsWarning`, `FileModeWarning`, and `RequestsDependencyWarning`) from
+      `exceptions.py` to this new file. Ensure you update all the references in the
+      repository such that any module requiring these warnings imports them from `warnings.py`
+      instead of `exceptions.py`. Additionally, remove these classes from `exceptions.py`
+      to avoid duplicate definition of warning classes.
+    id: split-warnings-exceptions-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/requests_refactor
+  problem_statement:
+    type: text
+    text: Please modify the 'select_proxy' function in the file 'requests/utils.py'
+      to include an additional parameter named 'log' with a default value of False.
+      Then, update all instances where the 'select_proxy' function is called in the
+      file 'requests/adapters.py' to explicitly set the 'log' parameter to True.
+    id: add-log-parameter-select-proxy-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/requests_refactor
+  problem_statement:
+    type: text
+    text: Update the 'resolve_proxies' function in the 'utils.py' file of the 'requests'
+      directory by adding a new boolean parameter named 'log'. Set the default value
+      of 'log' to False in the 'utils.py' file only. In all other files within the
+      'requests' directory except those in the 'tests' subdirectory, ensure that every
+      invocation of the 'resolve_proxies' function explicitly passes 'log=True'. This
+      includes but is not limited to the 'sessions.py' file where this parameter should
+      certainly be passed.
+    id: add-log-parameter-resolve-proxies-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/requests_refactor
+  problem_statement:
+    type: text
+    text: Please change the name of the class 'LookupDict' to 'DictLookup' in the
+      file named 'structures.py' within the src/requests directory. Ensure that all
+      references and import statements across the repository are updated accordingly,
+      especially within the 'status_codes.py' and 'test_structures.py' files located
+      in the src/requests and tests directories respectively. Ensure that 'DictLookup'
+      is being used correctly in these files post-renaming.
+    id: rename-lookup-dict-dict-lookup-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/requests_refactor
+  problem_statement:
+    type: text
+    text: Merge the functions `from_key_val_list` and `to_key_val_list` into a single
+      function named `key_val_convert` within the `utils.py` file, which should accept
+      a parameter `to_dict`. If `to_dict` is True, the function should behave like
+      `from_key_val_list`; if False, it should mimic the behavior of `to_key_val_list`.
+      Ensure that files `sessions.py` and `models.py`, which utilize these functions,
+      are appropriately updated to use the new `key_val_convert` function, adjusting
+      both direct function calls and their imports accordingly.
+    id: combine-from-key-to-key-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/requests_refactor
+  problem_statement:
+    type: text
+    text: Rename the function `super_len` to `complex_len` in the file named `utils.py`
+      located within the `src/requests` directory. Subsequently, update the respective
+      import statements and usage of this function in the files named `models.py`
+      in the `src/requests` directory and `test_utils.py` in the `tests` directory.
+      Ensure that the original `super_len` function is fully replaced by `complex_len`
+      and that there are no remnants of `super_len` in any file.
+    id: rename-super-len-complex-len-task
+
+# Repo: salt_refactor
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/salt_refactor
+  problem_statement:
+    type: text
+    text: Modify the boto3mod.py file by removing any existing definitions for exactly_n
+      and exactly_1 functions, and instead, directly import these functions from botomod.py.
+      Specifically, import exactly_n and exactly_1, and make sure they use the imported
+      functions imported_exactly_n and imported_exactly_1 respectively from the botomod.py
+      file. This adjustment avoids repetitive code definitions in boto3mod.py and
+      keeps the code cleaner.
+    id: exactly-n-boto-mod-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/salt_refactor
+  problem_statement:
+    type: text
+    text: Rename the constant EX_NOPERM to EX_PERM_DENIED in the 'exitcodes.py' file
+      under the 'salt/defaults' directory. After renaming, ensure that this change
+      is reflected across all usages within the codebase, specifically in 'ssh/__init__.py'
+      within the 'salt/client' directory and 'crypt.py' in the 'salt' directory, where
+      the former constant should no longer be referenced, but the new EX_PERM_DENIED
+      should be in use where necessary.
+    id: perm-denied-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/salt_refactor
+  problem_statement:
+    type: text
+    text: Please replace all instances of the misspelled constant name 'EX_CANTCREAT'
+      with the corrected constant name 'EX_CANTCREATE' in the files 'exitcodes.py'
+      and 'ssh_py_shim.py' within the 'salt' repository. Additionally, ensure that
+      this constant is correctly referenced everywhere in the repository, including
+      handling its usage in 'ssh_py_shim.py' and '__init__.py' under the 'ssh' client
+      module of 'salt'. Also confirm that no parts of the repository wrongly import
+      or use the old 'EX_CANTCREAT'.
+    id: cant-create-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/salt_refactor
+  problem_statement:
+    type: text
+    text: In the 'boto3mod.py' file located within the 'salt/utils' directory, update
+      the definition of the 'paged_call' function so that it no longer contains its
+      independent implementation. Instead, it should directly use 'paged_call' imported
+      from 'botomod.py' by renaming it to 'imported_paged_call' within 'boto3mod.py'.
+      Ensure that 'botomod.py' retains its complete version of the 'paged_call' function
+      with all its key elements such as docstrings, the 'pop' operation for 'marker_flag',
+      and the while loop handling.
+    id: paged-call-boto-mod-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/salt_refactor
+  problem_statement:
+    type: text
+    text: Add a boolean parameter named 'log' to the 'recursive_diff' function in
+      the 'data.py' file and default it to false. Ensure that all calls to this 'recursive_diff'
+      function across the repository, except within testing suites and the 'dictdiffer.py'
+      and 'listdiffer.py' files, pass this parameter as True. Maintain that any recursive
+      calls within the function itself inherit the initial log parameter setting from
+      the first call. Make sure internal function calls do not individually redefine
+      the log setting.
+    id: add-log-parameter-recursive-diff-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/salt_refactor
+  problem_statement:
+    type: text
+    text: In the repository, rename the function 'mksls' in the files preseed.py,
+      kickstart.py, and yast.py to more descriptive names reflecting the specific
+      conversions each module handles. Specifically, in preseed.py rename it to 'preseed_to_sls',
+      in kickstart.py rename it to 'kickstart_to_sls', and in yast.py rename it to
+      'autoyast_to_sls'. Ensure that the old function name 'mksls' is no longer used
+      in these files.
+    id: mksls-to-specific-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/salt_refactor
+  problem_statement:
+    type: text
+    text: Change the exit code name from EX_UNAVAILABLE to EX_UNAVAIL in the `exitcodes.py`
+      file located in the `salt/defaults/` directory for clarity and ease of use.
+      Make sure to also update all references to this exit code in the `scripts.py`
+      and `parsers.py` files within the `salt` and `salt/utils` directories respectively,
+      as well as in integration tests located in the `tests/pytests/integration/cli/test_salt_call.py`
+      to ensure they are consistent with this change.
+    id: get-unavail-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/salt_refactor
+  problem_statement:
+    type: text
+    text: Transfer the 'xml_to_dict', 'atts_to_dict', and 'string_to_value' functions
+      from the namecheap.py file to xmlutil.py within the SaltStack repository. Following
+      the transfer, update all references across the codebase that previously referred
+      to these functions in namecheap.py to now point to their new location in xmlutil.py.
+      Ensure that these functions no longer exist in namecheap.py to uphold proper
+      modular functionality.
+    id: namecheap-xmlutil-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/salt_refactor
+  problem_statement:
+    type: text
+    text: Modify the function 'get_capability_definitions' in the file 'pbm.py' within
+      the 'salt/utils/' directory to include an additional boolean parameter named
+      'log' which defaults to False. Then, in the file 'vsphere.py' within the 'salt/modules/'
+      directory, ensure that all existing calls to 'get_capability_definitions' explicitly
+      set this 'log' parameter to True. However, in the file 'test_pbm.py' within
+      the 'tests/unit/utils/' directory, where this function is used in tests, the
+      'log' parameter should either be explicitly set to False or not included in
+      the function calls.
+    id: add-log-parameter-get-capability-definitions-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/salt_refactor
+  problem_statement:
+    type: text
+    text: Update the `delete_directory` function in the `smb.py` file by adding a
+      new boolean parameter named `log` with a default value of `False`. For every
+      usage of this `delete_directory` function in the `cloud.py` file, ensure that
+      the `log` parameter is explicitly set to `True`. However, when this function
+      is called within the `test_smb.py` file, the `log` parameter should either be
+      set to `False` or not specified, aligning with its default value.
+    id: add-log-parameter-delete-directory-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/salt_refactor
+  problem_statement:
+    type: text
+    text: 'Please update the constant named EX_STATE_FAILURE to EX_STATE_FAIL within
+      the ''exitcodes.py'' file located under the ''salt/defaults'' directory. Additionally,
+      you should update all references to this constant in two other files: ''state.py''
+      within the ''salt/modules'' directory and ''test_salt_call.py'' in the ''tests/pytests/integration/cli''
+      directory. Make sure that the updated constant name is correctly reflected and
+      there are no references left to the old constant name in these files.'
+    id: ex-state-fail-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/salt_refactor
+  problem_statement:
+    type: text
+    text: Change the filename of 'channel.py' located in the 'salt/utils' directory
+      to 'transport.py'. Ensure that all references to 'channel.py' in the repository,
+      particularly in 'master.py' and 'server.py' under the 'salt/channel' directory,
+      are updated to reflect this change. Additionally, confirm that the 'iter_transport_opts'
+      function within 'transport.py' is correctly imported and utilized in these updated
+      files.
+    id: channel-to-transport-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/salt_refactor
+  problem_statement:
+    type: text
+    text: Please update the constant EX_PILLAR_FAILURE to EX_PILLAR_FAIL in the `exitcodes.py`
+      file within the Salt repository. Make sure to revise all references to this
+      constant in both the `state.py` file located in the `salt/client/ssh/wrapper/`
+      directory and the `state.py` file located in the `salt/modules/` directory so
+      that they reference the updated constant name EX_PILLAR_FAIL instead of the
+      old name EX_PILLAR_FAILURE.
+    id: ex-pillar-fail-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/salt_refactor
+  problem_statement:
+    type: text
+    text: Transfer all contents from the 'iam.py' file in the utils directory into
+      the 'aws.py' file located in the salt/utils directory. This consolidation should
+      include any functions, imports, and any other relevant code components from
+      'iam.py'. Ensure you update the 'aws.py' to retain functionality and cleanly
+      integrate the incoming code. After transferring, make sure to remove the 'iam.py'
+      file permanently from the utils directory.
+    id: iam-to-aws-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/salt_refactor
+  problem_statement:
+    type: text
+    text: Rename the attribute 'pem_finger' to 'pem_fingerprint' in relevant files
+      including '__init__.py' in the 'cloud' directory, 'crypt.py', 'key.py' in both
+      the root and 'modules', 'cloud.py' in 'utils', and 'key.py' in 'wheel'. Update
+      all occurrences of this attribute in these files, ensuring that its usage reflects
+      the new attribute name 'pem_fingerprint' while maintaining the existing functionality
+      intact, especially within function calls or definitions related to encryption
+      and key management tasks.
+    id: pem-fingerprint-task
+
+# Repo: scrapy_refactor
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/scrapy_refactor
+  problem_statement:
+    type: text
+    text: Modify the 'disconnect_all' function in the file signal.py located in the
+      utils directory to include an additional boolean parameter named 'log' with
+      a default value of True. Additionally, update any existing function calls to
+      'disconnect_all' in the files test_engine.py and test_pipeline_media.py within
+      the tests directory to explicitly include the parameter 'log' with a value of
+      False. Ensure that signalmanager.py remains unchanged.
+    id: add-log-parameter-disconnect-all-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/scrapy_refactor
+  problem_statement:
+    type: text
+    text: Create a new class named GunzipParams in the file 'gz.py' located within
+      the 'utils' directory of the 'scrapy' repository. This class should include
+      the attributes 'data' and 'max_size'. Update the signature of the 'gunzip' function
+      in the same 'gz.py' file so that it accepts a GunzipParams object as its only
+      parameter and adjusts its usage across the repository. Make sure all references
+      and imports related to gunzip actions in files like 'sitemap.py' and 'httpcompression.py'
+      within the 'spiders' and 'downloadermiddlewares' directories respectively, are
+      updated to utilize this new GunzipParams object.
+    id: parameterize-gunzip-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/scrapy_refactor
+  problem_statement:
+    type: text
+    text: Please relocate the functions verify_url_scheme, sanitize_module_name, and
+      extract_domain from the file genspider.py located in the scrapy/commands directory
+      to the utils url file named url.py in the scrapy/utils directory. After moving
+      these functions, ensure that you update the import statements in genspider.py
+      to properly import these functions from their new location in url.py. Modify
+      any necessary import statements in url.py to maintain functionality after the
+      functions are relocated.
+    id: genspider-functions-to-utils-url-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/scrapy_refactor
+  problem_statement:
+    type: text
+    text: In the scrapy/utils/engine.py file, prepend an underscore to the names of
+      functions related to engine status, such as renaming 'get_engine_status' to
+      '_get_engine_status'. After modifying these function names, ensure that you
+      update all occurrences and references of these names across the entire repository
+      where they are used or imported—including, but not limited to, debug.py, telnet.py,
+      memusage.py, extensions.rst in the docs, and test_crawl.py—to reflect the new
+      names with prefixed underscores. Ensure that these functions are only used internally
+      within the Scrapy project, as indicated by the new function naming convention.
+    id: rename-engine-status-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/scrapy_refactor
+  problem_statement:
+    type: text
+    text: Replace all references and uses of the 'NotSupported' exception with the
+      'Unsupported' exception in the Scrapy project repository. Specifically, update
+      imports, class definitions, and exception raising or handling in the files located
+      in the 'scrapy/core/downloader/handlers/', 'scrapy/http/response/', 'scrapy/spiders/',
+      'tests/', 'scrapy/exceptions.py', and the documentation file 'docs/topics/exceptions.rst'.
+      Ensure that 'Unsupported' inherits from Exception where it is newly defined
+      and is properly employed in place of 'NotSupported' across the indicated modules
+      and documentation.
+    id: not-supported-exception-to-unsupported-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/scrapy_refactor
+  problem_statement:
+    type: text
+    text: Create a new file named downloadermiddlewares.py within the utils directory
+      of the Scrapy project and relocate the standalone functions get_status_size
+      and get_header_size from the downloadermiddlewares class in the stats.py file
+      to this new file. Ensure that these functions are correctly imported back into
+      the stats.py file where they are utilized. Follow the necessary conventions
+      for managing imports, such as typing and Scrapy-specific utilities, to maintain
+      functionality.
+    id: new-downloadermiddlewares-utils-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/scrapy_refactor
+  problem_statement:
+    type: text
+    text: 'Create a new class called VerifyReactor within the file reactor.py located
+      in the scrapy/utils directory. This class should encapsulate the two functions:
+      verify_installed and is_asyncio_reactor_installed. Once created, update all
+      existing references across the repository to these functions so that they are
+      accessed via the new VerifyReactor class. This includes modifying any relevant
+      import statements in files like defer.py, crawler.py, and various documentation
+      and test files (e.g., asyncio.rst, test_utils_asyncio.py) to ensure the VerifyReactor
+      class is correctly utilized. Be sure to revise the documentation wherever these
+      methods are mentioned to refer to their new location within the VerifyReactor
+      class.'
+    id: new-verify-reactor-class-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/scrapy_refactor
+  problem_statement:
+    type: text
+    text: Create a new Python file named `spider_utils.py` within the `scrapy/spiders`
+      directory. Transfer all global-level functions (functions not contained within
+      any class) from files such as `sitemap.py` and `crawl.py` located in the same
+      directory into `spider_utils.py`. Subsequently, adjust the import statements
+      in these source files to use the functions from `spider_utils.py`, ensuring
+      you maintain the same variable and function naming conventions as previously
+      established.
+    id: new-spider-utils-in-spiders-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/scrapy_refactor
+  problem_statement:
+    type: text
+    text: Transfer the function `sitemap_urls_from_robots` from the `sitemap.py` file
+      within the `scrapy/spiders` folder to the `url.py` file in the `scrapy/utils`
+      directory. Ensure all references to this function in the entire repository,
+      such as in test files like `test_utils_sitemap.py` and any spiders like `sitemap.py`,
+      are updated to reflect its new location. Maintain the tests associated with
+      this function in their current files but adjust the import paths correspondingly
+      to import from the new location in `scrapy/utils/url.py`.
+    id: sitemap-url-to-url-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/scrapy_refactor
+  problem_statement:
+    type: text
+    text: Modify the function definition of `job_dir` in the file `job.py` to include
+      an additional boolean parameter named `log` with a default value of `True`.
+      Ensure to update all instances where the `job_dir` function is called in the
+      files `dupefilters.py`, `spiderstate.py`, and `scheduler.py` to explicitly set
+      this new parameter to `False`. Additionally, ensure that the module `logging`
+      is imported in the `job.py` file where `job_dir` is defined.
+    id: add-log-parameter-job-dir-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/scrapy_refactor
+  problem_statement:
+    type: text
+    text: In the file named testproc.py located in the scrapy/utils directory, rename
+      the class ProcessTest to TestProc to match the filename. Additionally, update
+      all occurrences where this class is referenced throughout the repository to
+      reflect this change, including in files such as test_command_fetch.py, test_command_parse.py,
+      test_command_shell.py, and test_command_version.py, ensuring the class and its
+      methods like execute and _process_finished are properly accessed under the new
+      name.
+    id: rename-processtest-testproc-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/scrapy_refactor
+  problem_statement:
+    type: text
+    text: 'In the ''scrapy/commands'' directory, rename all occurrences of ''short_desc''
+      to ''short_description'' and ''long_desc'' to ''long_description'' in the ''__init__.py''
+      file and in each of the following command files: ''bench.py'', ''check.py'',
+      ''crawl.py'', ''edit.py'', ''fetch.py'', ''genspider.py'', ''list.py'', ''parse.py'',
+      ''runspider.py'', ''settings.py'', ''shell.py'', ''startproject.py'', ''version.py'',
+      and ''view.py''. Ensure these changes are also made in any method names and
+      variable references within these files to maintain consistency across the project.'
+    id: rename-description-commands-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/scrapy_refactor
+  problem_statement:
+    type: text
+    text: Enhance the xmliter function in the file named 'iterators.py' located in
+      the 'scrapy/utils' directory by adding a new boolean parameter named 'log'.
+      Set the default value of this parameter to 'true'. In the file named 'test_utils_iterators.py',
+      located in the 'tests' directory, ensure that all calls to the xmliter function
+      explicitly set this new parameter to 'false'.
+    id: add-log-parameter-xmliter-task
+
+# Repo: tornado_refactor
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/tornado_refactor
+  problem_statement:
+    type: text
+    text: Rework the handling of 'dummy_executor' in the Tornado framework to centralize
+      its definition. Move the definition of 'dummy_executor' to a new file named
+      `_globals.py`. Ensure that `wsgi.py` and `netutil.py` within the Tornado directory
+      import `dummy_executor` specifically from `tornado._globals`. Also, remove or
+      refactor any existing references or definitions of `dummy_executor` in `concurrent.py`
+      to ensure it is no longer defined or directly referenced there.
+    id: global-objects-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/tornado_refactor
+  problem_statement:
+    type: text
+    text: Please transfer the Resolver class along with all its subclass dependencies
+      from the netutils module to a newly created file named resolver.py within the
+      tornado directory. After relocating these classes, ensure to adjust all import
+      statements across the repository that reference the Resolver or any of its subclasses
+      accordingly. This includes updating files like websocket.py, tcpclient.py, and
+      various test files like websocket_test.py and simple_httpclient_test.py, ensuring
+      they accurately reference the new location of these classes.
+    id: resolvers-as-separate-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/tornado_refactor
+  problem_statement:
+    type: text
+    text: Rename the method `get_new_ioloop()` in the `AsyncTestCase` class to `getNewIoLoop()`
+      in the `testing.py` file, and ensure all references in the `gen_test.py` file,
+      also under the Tornado framework, are updated to reflect this change. Additionally,
+      check and update any other occurrences across the entire repository where this
+      method might be called or referenced.
+    id: rename-to-camel-case-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/tornado_refactor
+  problem_statement:
+    type: text
+    text: Refactor the `enable_pretty_logging()` function by moving it from the `log.py`
+      file in the Tornado framework to the `OptionParser` class located in the `options.py`
+      file. Ensure that this transition involves proper handling and integration of
+      logging functionalities needed by `OptionParser`, such as importing necessary
+      logging and logging handlers in the `options.py` file. Follow up by removing
+      the `enable_pretty_logging()` function definition from `log.py` to ensure that
+      it does not exist there anymore.
+    id: option-parser-with-pretty-print-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/tornado_refactor
+  problem_statement:
+    type: text
+    text: Refactor the code in the 'tornado' module by integrating the 'LOCALE_NAMES'
+      constant directly into the 'locale.py' file from '_locale_data.py', and subsequently
+      eliminate the '_locale_data.py' file. Ensure that after moving 'LOCALE_NAMES',
+      no import statements in 'locale.py' are trying to import it from '_locale_data.py',
+      preserving the functionality but consolidating related data and simplifying
+      the module structure.
+    id: remove-locale-data-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/tornado_refactor
+  problem_statement:
+    type: text
+    text: Move the functions `enable_pretty_logging()` and `define_logging_options()`
+      from the file `log.py` in the Tornado framework to a new file named `global_log_options.py`.
+      Ensure after moving that `enable_pretty_logging()` and `define_logging_options()`
+      no longer exist in `log.py`, and update any necessary imports in files such
+      as `options.py` and `log_test.py` to reflect this change.
+    id: log-utils-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/tornado_refactor
+  problem_statement:
+    type: text
+    text: Rename the class "HTTP1Connection" to "HTTP1xConnection" in the file named
+      "http1connection.py". Ensure to update all the references to the renamed class
+      in the repository, specifically updating the import and usage in files like
+      "simple_httpclient.py", "http1connection_test.py", "httpserver_test.py", and
+      comments mentioning it in "web_test.py". Do not change any other class functionality
+      or the names of any other related classes or functions during this renaming
+      process.
+    id: rename-http1connection-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/tornado_refactor
+  problem_statement:
+    type: text
+    text: Create a new dataclass named TCPClientConfig in the file named tcpclientconfig.py
+      within the tornado directory. Modify the files client.py in demos/tcpecho, simple_httpclient.py,
+      tcpclient.py, and tcpclient_test.py by importing TCPClientConfig from tornado.tcpclientconfig
+      and use this class to encapsulate the parameters in calls to TCPClient.connect()
+      in those files. Make sure that TCPClient.connect() in these files accepts an
+      instance of TCPClientConfig with necessary configuration parameters.
+    id: tcpclient-connect-params-task
+- env:
+    deployment:
+      type: docker
+      image: python:3.11
+    repo:
+      type: github
+      github_url: https://github.com/dhruvji/tornado_refactor
+  problem_statement:
+    type: text
+    text: Transfer all independent functions from the file `options.py` in the `tornado`
+      directory to a new file named `global_options.py` in the same directory. Additionally,
+      update all relevant import statements across various files in the repository,
+      ensuring that places such as `blog.py`, `facebook.py`, `file_uploader.py`, and
+      others correctly reference `global_options.py` instead. This update should address
+      all occurrences of these functions, including in any demo or test files.
+    id: options-utils-task
