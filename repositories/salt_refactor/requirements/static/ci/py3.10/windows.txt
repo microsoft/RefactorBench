@@ -497,7 +497,7 @@ urllib3==1.26.18
     #   python-etcd
     #   requests
     #   responses
-virtualenv==20.24.7
+virtualenv==20.36.1
     # via
     #   -r requirements/static/ci/common.in
     #   pytest-salt-factories
