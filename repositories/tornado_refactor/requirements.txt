@@ -61,6 +61,7 @@ packaging==24.1
     #   pyproject-api
     #   sphinx
     #   tox
+    #   wheel
 pathspec==0.12.1
     # via black
 pip-tools==7.4.1
@@ -119,7 +120,7 @@ urllib3==2.2.2
     # via requests
 virtualenv==20.26.2
     # via tox
-wheel==0.43.0
+wheel==0.46.2
     # via pip-tools
 
 # The following packages are considered to be unsafe in a requirements file:
