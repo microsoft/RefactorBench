@@ -22,7 +22,7 @@ certifi==2024.2.2
     # via
     #   -r docs.txt
     #   requests
-cffi==1.16.0
+cffi==2.0.0
     # via
     #   -r typing.txt
     #   cryptography
@@ -36,7 +36,7 @@ charset-normalizer==3.3.2
     #   requests
 colorama==0.4.6
     # via tox
-cryptography==42.0.8
+cryptography==46.0.5
     # via -r typing.txt
 distlib==0.3.8
     # via virtualenv
